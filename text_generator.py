@@ -3,79 +3,88 @@ import random
 users = ["user0", "user1"]
 
 greetings = [
-    ("yo", "what’s up"), ("sup", "heyyy"), ("hello", "yo"), ("hii", "hey"),
-    ("you there?", "yeah what’s up"), ("heyyy", "hello"), ("yo", "sup")
+    ("gm", "wagmi"), ("yo", "wen moon"), ("sup", "ngmi 😭"), ("hello", "hodl on"),
+    ("you there?", "lfg"), ("wagmi", "gm"), ("wen airdrop?", "soon bruh")
 ]
 
-wwe_data = {
-    "Attitude Era": {
+crypto_data = {
+    "Memecoins": {
         "starter": [
-            "stone cold just stunned everyone", "the rock’s promo had me dying",
-            "undertaker’s entrance gave me chills", "dx was pure chaos"
+            "doge just pumped like crazy", "pepe trending again", "shiba flippening rumors",
+            "elon tweeted and it moved the market"
         ],
         "replies": [
-            "bro smashed beers mid-match", "that promo was peak disrespect",
-            "i still hear the glass shatter", "triple h was ruthless"
+            "doge to the moon 🚀", "memes = alpha fr", "that pump was criminal",
+            "pepe holders eating good"
         ],
         "followups": [
-            "wrestling hasn’t been the same", "they had no chill back then",
-            "felt like watching a street fight", "every episode was wild"
+            "we’re early anon", "ngmi if you sold", "this space built different",
+            "pure degens everywhere"
         ]
     },
-    "Ruthless Aggression": {
+    "L1 Giants": {
         "starter": [
-            "john cena’s debut was iconic", "batista vs undertaker was brutal",
-            "brock lesnar was a beast", "edge cashed in MITB like a villain"
+            "eth gas fees wildin", "solana devs grinding", "avax is heating up",
+            "polygon partnerships rolling in"
         ],
         "replies": [
-            "cena really said: you can’t see me", "batista bomb hit different",
-            "lesnar broke the ring once", "edge was the ultimate opportunist"
+            "eth staking looking tasty", "sol never sleeps", "avax speed unmatched",
+            "polygon MVP of scaling"
         ],
         "followups": [
-            "that era was pure intensity", "every feud felt personal",
-            "wrestlers had actual grit", "storylines were top tier"
+            "l1 wars incoming", "dev activity booming", "TVL growing fast",
+            "you love to see it"
         ]
     },
-    "Golden Era": {
+    "Wallet Culture": {
         "starter": [
-            "hulkamania ran wild", "andre the giant was unstoppable",
-            "macho man’s promos were legendary", "ultimate warrior was electric"
+            "just bridged to zkSync", "metamask updated again", "phantom is clean",
+            "keplr wallet doing wonders"
         ],
         "replies": [
-            "hogan lifted andre like it was nothing", "those entrances were epic",
-            "macho man had unmatched energy", "warrior sprinted like a maniac"
+            "metamask is OG", "zkSync fees are a blessing", "phantom UI top tier",
+            "keplr lets me vibe with Cosmos"
         ],
         "followups": [
-            "wrestling was pure spectacle", "they built legends back then",
-            "felt like watching superheroes", "crowds were insane"
+            "wallet UX matters", "I swear by my seed phrase", "security is non-negotiable",
+            "wallet wars are underrated"
         ]
     }
 }
 
 meme_responses = [
-    "bro that match was pure chaos", "i still quote that promo daily",
-    "wrestling used to hit different", "they don’t make entrances like that anymore",
-    "i paused just to scream", "that chair shot was criminal",
-    "peak storytelling fr", "i miss those pyro intros",
-    "every match felt like a movie", "they animated pain in real life"
+    "that chart gave me whiplash", "this market ain’t real", "i need airdrops to survive",
+    "bull trap incoming?", "entry was pure alpha", "gas fees got me broke",
+    "the vibes were immaculate", "that rug was cinematic", "we living on testnet",
+    "L2 season heating up"
+]
+
+reflective_responses = [
+    "every wallet holds a story", "i've seen rugpulls teach more than books",
+    "your seed phrase is your soul", "market cycles mirror human emotion",
+    "sometimes the best trade is no trade", "degen but introspective",
+    "each token is a bet on belief", "charts don’t capture conviction",
+    "gas fees humble us all", "i miss the quiet of bear season",
+    "the blockchain remembers everything", "hodling is a meditation",
+    "trading tests your patience, then your sanity", "i stare at red candles like they owe me money",
+    "even the best alpha fades with time", "bull markets feed egos, bear markets feed wisdom"
 ]
 
 short_lines = [
-    "glass shatter 💥", "dx wildin", "cena GOAT", "rip kayfabe", "edge sneaky",
-    "rock promo 🔥", "undertaker 😱", "lesnar beast", "batista bomb", "hogan flex",
-    "macho vibes", "warrior sprint", "pipebomb 💣", "chair shot", "MITB cash-in",
-    "heel turn", "popcorn match", "no chill", "pure heat", "legend vibes"
+    "wen moon 🌕", "airdrop hunter", "degen vibes", "hodl tight", "buy signal 🔥",
+    "eth gas 🫠", "sol dev grind", "pepe pump", "ledger flex", "keplr zen",
+    "phantom sleek", "zkSync 🔮", "wallet wars", "seed phrase god", "exit liquidity",
+    "chart addict", "L1 chad", "OP retrodrop", "ETH L2 boom", "flippening vibes"
 ]
 
 extended_lines = [
-    "stone cold stunned the whole roster", "the rock cooked that promo to perfection",
-    "undertaker’s entrance was cinematic", "cena’s debut had the crowd roaring",
-    "edge cashed in like a true villain", "batista bomb shook the ring",
-    "lesnar broke the ring with big show", "dx made every segment chaotic",
-    "macho man’s energy was unmatched", "hogan vs andre was pure spectacle",
-    "warrior sprinted like a superhero", "pipebomb changed wrestling forever",
-    "every feud felt personal back then", "pyro intros were next level",
-    "wrestling was peak drama in that era"
+    "gas fees ate my soul", "bridged tokens and prayed", "airdrop was pure dopamine",
+    "my wallet is a battlefield", "zkSync made me believe again",
+    "phantom feels like silk", "ledger gives me peace of mind",
+    "keplr vibes are underrated", "eth staking finally paid off",
+    "pepe holders turned prophets", "polygon keeps building",
+    "sol devs never sleep", "avax speed is unreal", "wallet UX changed the game",
+    "trading memes > fundamentals"
 ]
 
 def get_unique_response(pool, used):
@@ -92,8 +101,8 @@ def generate_convo():
     convo.append(f"user0: {greet0}")
     convo.append(f"user1: {greet1}")
 
-    topic_key = random.choice(list(wwe_data.keys()))
-    data = wwe_data[topic_key]
+    topic_key = random.choice(list(crypto_data.keys()))
+    data = crypto_data[topic_key]
 
     msg0 = get_unique_response(data["starter"], used_lines)
     convo.append(f"user0: {msg0}")
@@ -107,22 +116,27 @@ def generate_convo():
     meme = get_unique_response(meme_responses, used_lines)
     convo.append(f"user1: {meme}")
 
+    # Inject reflective line occasionally
+    if random.random() < 0.2:
+        reflection = get_unique_response(reflective_responses, used_lines)
+        convo.append(f"user{random.choice([0, 1])}: {reflection}")
+
     return convo
 
-def generate_short_sentences(count=1000):
+def generate_short_sentences(count=400):
     return [random.choice(short_lines) for _ in range(count)]
 
-def generate_extended_sentences(count=1000):
+def generate_extended_sentences(count=400):
     return [random.choice(extended_lines) for _ in range(count)]
 
 # Generate main conversation
 conversation = []
-for _ in range(2500):  # ~10,000 lines total
+for _ in range(500):  # ~2000 lines total
     conversation.extend(generate_convo())
 
 # Generate short and extended meme-style sentences
-short_sentences = generate_short_sentences(1000)
-extended_sentences = generate_extended_sentences(1000)
+short_sentences = generate_short_sentences()
+extended_sentences = generate_extended_sentences()
 
 # Write to file
 with open("conversation.txt", "w", encoding="utf-8") as f:
@@ -135,4 +149,4 @@ with open("conversation.txt", "w", encoding="utf-8") as f:
     for line in extended_sentences:
         f.write(f"{line}\n")
 
-print("✅ Done: 10,000+ WWE convo lines + 1000 short + 1000 extended meme shots saved.")
+print("✅ Done: 2000 crypto convo lines + 400 short + 400 extended + sprinkled reflection.")
