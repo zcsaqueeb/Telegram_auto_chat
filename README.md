@@ -48,7 +48,7 @@ python text_generator.py
 
 Creates:
 
-- `cconversation.txt`: convo lines + meme sentences
+- `conversation.txt`: convo lines + meme sentences
 - Optionally integrates with Telegram bot reply logic
 
 ### Then run the main bot script:
