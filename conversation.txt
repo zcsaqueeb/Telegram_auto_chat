@@ -1,0 +1,12 @@
+#add conversation txt here
+#like example 
+user0: heyyy
+user1: hello
+user0: edge cashed in MITB like a villain
+user1: lesnar broke the ring once
+user0: every feud felt personal
+user1: bro that match was pure chaos
+user0: hello
+user1: yo
+user0: john cena’s debut was iconic
+user1: lesnar broke the ring once
