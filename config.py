@@ -1,17 +1,11 @@
-# 🔐 Telegram API credentials
-API_ID = TELEGRAM_API_ID
-API_HASH = "Telegram_api_hash"
+# config.py
 
-# 🤖 Telegram Bot Token
-BOT_TOKEN = "Bot_token"
+# From https://my.telegram.org/apps
+API_ID = 123456
+API_HASH = "0123456789abcdef0123456789abcdef"  # 32‑char hex
 
-# 🎯 Target group name or @username
-TARGET_GROUP_NAME = "add_here"  #example memecore
+# From @BotFather (looks like 123456789:AA....)
+BOT_TOKEN = "123456789:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 
-# 🕓 Timing controls
-RESPONSE_DELAY = 3          # Delay in seconds for responder replies
-CHATTER_REPLY_DELAY = 60    # Delay between chatter message and reply (1 min total loop)
-
-# 🧠 GPT Integration
-USE_GPT = True
-GPT_API_URL = "https://gpt-3-5.apis-bj-devs.workers.dev/"
+# Delay between each scripted message (seconds, can be float)
+RESPONSE_DELAY = 3
