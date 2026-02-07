@@ -1,152 +1,121 @@
 import random
+import sys
 
-users = ["user0", "user1"]
+# =========================
+# USERS (LOCKED)
+# =========================
+USER0 = "user0"
+USER1 = "user1"
 
+# =========================
+# CONTENT POOLS
+# =========================
 greetings = [
-    ("gm", "wagmi"), ("yo", "wen moon"), ("sup", "ngmi 😭"), ("hello", "hodl on"),
-    ("you there?", "lfg"), ("wagmi", "gm"), ("wen airdrop?", "soon bruh")
+    ("gm", "wagmi"),
+    ("yo", "wen moon"),
+    ("sup", "ngmi 😭"),
+    ("hello", "hodl on"),
+    ("wen airdrop?", "soon bruh"),
 ]
 
-crypto_data = {
-    "Memecoins": {
-        "starter": [
-            "doge just pumped like crazy", "pepe trending again", "shiba flippening rumors",
-            "elon tweeted and it moved the market"
-        ],
-        "replies": [
-            "doge to the moon 🚀", "memes = alpha fr", "that pump was criminal",
-            "pepe holders eating good"
-        ],
-        "followups": [
-            "we’re early anon", "ngmi if you sold", "this space built different",
-            "pure degens everywhere"
-        ]
-    },
-    "L1 Giants": {
-        "starter": [
-            "eth gas fees wildin", "solana devs grinding", "avax is heating up",
-            "polygon partnerships rolling in"
-        ],
-        "replies": [
-            "eth staking looking tasty", "sol never sleeps", "avax speed unmatched",
-            "polygon MVP of scaling"
-        ],
-        "followups": [
-            "l1 wars incoming", "dev activity booming", "TVL growing fast",
-            "you love to see it"
-        ]
-    },
-    "Wallet Culture": {
-        "starter": [
-            "just bridged to zkSync", "metamask updated again", "phantom is clean",
-            "keplr wallet doing wonders"
-        ],
-        "replies": [
-            "metamask is OG", "zkSync fees are a blessing", "phantom UI top tier",
-            "keplr lets me vibe with Cosmos"
-        ],
-        "followups": [
-            "wallet UX matters", "I swear by my seed phrase", "security is non-negotiable",
-            "wallet wars are underrated"
-        ]
-    }
+topics = {
+    "starter": [
+        "eth gas fees wildin",
+        "solana devs grinding",
+        "pepe trending again",
+        "doge just pumped",
+        "just bridged to zkSync",
+    ],
+    "reply": [
+        "yeah market heating up",
+        "volume confirms it",
+        "that move was criminal",
+        "ecosystem looking strong",
+        "fees finally reasonable",
+    ],
+    "followup": [
+        "we’re early anon",
+        "ngmi if you fade this",
+        "dev activity booming",
+        "pure degen energy",
+        "you love to see it",
+    ],
+    "meme": [
+        "this market ain’t real",
+        "airdrops keeping me alive",
+        "charts got hands",
+        "L2 season loading",
+        "testnet vibes",
+    ],
+    "reflect": [
+        "sometimes the best trade is no trade",
+        "market cycles mirror human emotion",
+        "hodling is a meditation",
+        "bulls build ego, bears build skill",
+    ],
 }
 
-meme_responses = [
-    "that chart gave me whiplash", "this market ain’t real", "i need airdrops to survive",
-    "bull trap incoming?", "entry was pure alpha", "gas fees got me broke",
-    "the vibes were immaculate", "that rug was cinematic", "we living on testnet",
-    "L2 season heating up"
-]
+# =========================
+# HELPERS
+# =========================
+def pick(pool, used):
+    available = [x for x in pool if x not in used]
+    msg = random.choice(available if available else pool)
+    used.add(msg)
+    return msg
 
-reflective_responses = [
-    "every wallet holds a story", "i've seen rugpulls teach more than books",
-    "your seed phrase is your soul", "market cycles mirror human emotion",
-    "sometimes the best trade is no trade", "degen but introspective",
-    "each token is a bet on belief", "charts don’t capture conviction",
-    "gas fees humble us all", "i miss the quiet of bear season",
-    "the blockchain remembers everything", "hodling is a meditation",
-    "trading tests your patience, then your sanity", "i stare at red candles like they owe me money",
-    "even the best alpha fades with time", "bull markets feed egos, bear markets feed wisdom"
-]
-
-short_lines = [
-    "wen moon 🌕", "airdrop hunter", "degen vibes", "hodl tight", "buy signal 🔥",
-    "eth gas 🫠", "sol dev grind", "pepe pump", "ledger flex", "keplr zen",
-    "phantom sleek", "zkSync 🔮", "wallet wars", "seed phrase god", "exit liquidity",
-    "chart addict", "L1 chad", "OP retrodrop", "ETH L2 boom", "flippening vibes"
-]
-
-extended_lines = [
-    "gas fees ate my soul", "bridged tokens and prayed", "airdrop was pure dopamine",
-    "my wallet is a battlefield", "zkSync made me believe again",
-    "phantom feels like silk", "ledger gives me peace of mind",
-    "keplr vibes are underrated", "eth staking finally paid off",
-    "pepe holders turned prophets", "polygon keeps building",
-    "sol devs never sleep", "avax speed is unreal", "wallet UX changed the game",
-    "trading memes > fundamentals"
-]
-
-def get_unique_response(pool, used):
-    choices = [msg for msg in pool if msg not in used]
-    selected = random.choice(choices if choices else pool)
-    used.add(selected)
-    return selected
-
-def generate_convo():
+# =========================
+# CORE LOGIC
+# =========================
+def generate_conversation(n: int):
     convo = []
-    used_lines = set()
+    used = set()
 
-    greet0, greet1 = random.choice(greetings)
-    convo.append(f"user0: {greet0}")
-    convo.append(f"user1: {greet1}")
+    # Mandatory greeting pair
+    g0, g1 = random.choice(greetings)
+    convo.append(f"{USER0}: {g0}")
+    convo.append(f"{USER1}: {g1}")
 
-    topic_key = random.choice(list(crypto_data.keys()))
-    data = crypto_data[topic_key]
+    i = 2
+    while len(convo) < n * 2:
+        speaker = USER0 if i % 2 == 0 else USER1
 
-    msg0 = get_unique_response(data["starter"], used_lines)
-    convo.append(f"user0: {msg0}")
+        if i % 4 == 0:
+            msg = pick(topics["starter"], used)
+        elif i % 4 == 1:
+            msg = pick(topics["reply"], used)
+        elif i % 4 == 2:
+            msg = pick(topics["followup"], used)
+        else:
+            msg = pick(
+                topics["reflect"] if random.random() < 0.2 else topics["meme"],
+                used
+            )
 
-    msg1 = get_unique_response(data["replies"], used_lines)
-    convo.append(f"user1: {msg1}")
+        convo.append(f"{speaker}: {msg}")
+        i += 1
 
-    followup1 = get_unique_response(data["followups"], used_lines)
-    convo.append(f"user0: {followup1}")
+    return convo[: n * 2]
 
-    meme = get_unique_response(meme_responses, used_lines)
-    convo.append(f"user1: {meme}")
+# =========================
+# ENTRY POINT
+# =========================
+def main():
+    try:
+        n = int(input("How many messages per user? : ").strip())
+        if n <= 0:
+            raise ValueError
+    except:
+        print("Invalid number")
+        sys.exit(1)
 
-    # Inject reflective line occasionally
-    if random.random() < 0.2:
-        reflection = get_unique_response(reflective_responses, used_lines)
-        convo.append(f"user{random.choice([0, 1])}: {reflection}")
+    conversation = generate_conversation(n)
 
-    return convo
+    with open("conversation.txt", "w", encoding="utf-8") as f:
+        for line in conversation:
+            f.write(line + "\n")
 
-def generate_short_sentences(count=400):
-    return [random.choice(short_lines) for _ in range(count)]
+    print(f"Generated perfect 2-user conversation: {n} ↔ {n}")
 
-def generate_extended_sentences(count=400):
-    return [random.choice(extended_lines) for _ in range(count)]
-
-# Generate main conversation
-conversation = []
-for _ in range(500):  # ~2000 lines total
-    conversation.extend(generate_convo())
-
-# Generate short and extended meme-style sentences
-short_sentences = generate_short_sentences()
-extended_sentences = generate_extended_sentences()
-
-# Write to file
-with open("conversation.txt", "w", encoding="utf-8") as f:
-    for line in conversation:
-        f.write(f"{line}\n")
-    f.write("\n# Short Sentences\n")
-    for line in short_sentences:
-        f.write(f"{line}\n")
-    f.write("\n# Extended Sentences\n")
-    for line in extended_sentences:
-        f.write(f"{line}\n")
-
-print("✅ Done: 2000 crypto convo lines + 400 short + 400 extended + sprinkled reflection.")
+if __name__ == "__main__":
+    main()
